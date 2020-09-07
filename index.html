@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+      .container {
+        background-color: yellow;
+      }
+      span {
+        font-size: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container text-center text-dark text-uppercase">
+      <h1>stop watch</h1>
+      <h1>vanilla javascript stop watch</h1>
+      <div>
+        <span id="minutes">00</span><span>:</span><span id="seconds">00</span>
+      </div>
+      <button class="btn btn-primary" id="start">start</button>
+      <button class="btn btn-primary" id="stop">stop</button>
+      <button class="btn btn-primary" id="reset">reset</button>
+    </div>
+    <script>
+      var start = document.getElementById("start");
+      var stop = document.getElementById("stop");
+      var reset = document.getElementById("reset");
+      var minutes = document.getElementById("minutes");
+      var seconds = document.getElementById("seconds");
+      let c_seconds = 00;
+      let c_minuts = 00;
+      var start_id;
+      start.addEventListener("click", function () {
+        start_id = setInterval(function () {
+          c_seconds = c_seconds + 1;
+          if (c_seconds == 59) {
+            c_minuts = c_minuts + 1;
+            c_seconds = 00;
+          }
+          seconds.innerText = c_seconds > 9 ? c_seconds : "0" + c_seconds;
+          minutes.innerText = c_minuts > 9 ? c_minuts : "0" + c_minuts;
+        }, 1000);
+      });
+      stop.addEventListener("click", function () {
+        clearInterval(start_id);
+      });
+      reset.addEventListener("click", function () {
+        clearInterval(start_id);
+        c_seconds = 00;
+        seconds.innerText = c_seconds;
+      });
+    </script>
+  </body>
+</html>
